@@ -1,0 +1,5 @@
+autopep8==1.6.0
+Pillow==9.1.1
+pycodestyle==2.8.0
+qrcode==7.3.1
+toml==0.10.2

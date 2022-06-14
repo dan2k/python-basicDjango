@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+<body>
+    <h1>Test</h1>
+    <hr>
+    Title: {{ site.title }}
+    <br>
+    Msg: {{ site.msg }}
+    <br>
+    color: {{ color.0 }}
+    <br>
+    Date: {{ date|date:'j N' }}
+    <!-- ตัวอย่างการเขียน if...else-->
+  
+   
+    <ul>
+        {% for c in color %}
+        <li>{{ c }} </li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for k,v in site.items %} 
+            <li>{{ k }}: {{ v }}</li>
+        {% endfor %}
+    </ul>
+    <ul>
+        {% for k,v in site.items reversed%} 
+            <li>{{ k }}: {{ v }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

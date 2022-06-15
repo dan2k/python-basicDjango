@@ -28,16 +28,62 @@ services:
     # (Adding the "ports" property to this file will not forward from a Codespace.)
 
   db:
-    image: postgres:latest
-    restart: unless-stopped
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
+    image: postgres
+    container_name: local_pgdb
+    restart: always
+    ports:
+      - "54320:5432"
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_DB: postgres
-      POSTGRES_PASSWORD: postgres
-    # Add "forwardPorts": ["5432"] to **devcontainer.json** to forward PostgreSQL locally.
-    # (Adding the "ports" property to this file will not forward from a Codespace.)
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - local_pgdata:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: sangtong@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: tongdang
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+  mysql:
+    build:
+      context: .
+      dockerfile: ./mysql/Dockerfile
+    container_name: mysql
+    ports:
+      - 13306:3306
+    volumes:
+      #- ../db:/var/lib/mysql
+      - type: volume
+        source: db-store
+        target: /var/lib/mysql
+        volume:
+          nocopy: true
+    restart: unless-stopped
+    environment:
+      - MYSQL_DATABASE=${DB_NAME:-django}
+      - MYSQL_USER=${DB_USER:-root}
+      - MYSQL_PASSWORD=${DB_PASS:-root}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS:-root}
+    
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+    links:
+      - mysql
+    ports:
+      - 4848:80  
 
 volumes:
-  postgres-data: null
+  local_pgdata:
+  pgadmin-data:
+  db-store:

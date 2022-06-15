@@ -26,19 +26,21 @@
             </tr>
         </thead>
         <tbody>
+                {% for product in products %}
                 <tr>
-                    <td><img src="{% static 'backend/img/ip12pro.jpg' %}" width="50"></td>
-                    <td>iPhone 12 Pro</td>
-                    <td>25896545897455</td>
-                    <td>10</td>
-                    <td>45800.00</td>
-                    <td>1</td>
+                    <td><img src="{{ product.product_image }}" width="50"></td>
+                    <td>{{ product.product_name }}</td>
+                    <td>{{ product.barcode }}</td>
+                    <td>{{ product.qty }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{product_status }}</td>
                     <td>
                         <a class="btn btn-sm btn-warning">แก้ไข</a>
                         <a class="btn btn-sm btn-info">ดู</a>
                         <a class="btn btn-sm btn-danger">ลบ</a>
                     </td>
                 </tr>
+                {% endfor %}
         </tbody>
     </table>
 </div>

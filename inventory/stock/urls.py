@@ -17,6 +17,7 @@ urlpatterns = [
     path('backend/dashboard', views.dashboard, name='dashboard'),
     path('backend/product', views.product, name='product'),
     path('backend/category', views.category, name='category'),
+    path('backend/logout', views.logout, name='logout'),
 
 
 ]

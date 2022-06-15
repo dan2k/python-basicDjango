@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'stock',
+    'note',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -77,10 +79,32 @@ WSGI_APPLICATION = 'inventory.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'mysql',
+        'PORT': '3306'
     }
+    # PostgreSQL
+    #pip install psycopg2
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #         'NAME': 'djangoinventory', 
+    #         'USER': 'postgres', 
+    #         'PASSWORD': '123456',
+    #         'HOST': 'localhost', 
+    #         'PORT': '5432',
+    #     }
+    # }
+
+    
 }
 
 

@@ -14,16 +14,16 @@
                         <h1 class="h4 text-gray-900 mb-4">เข้าสู่ระบบ</h1>
                     </div>
 
-                    <form action="#"">
-
+                    <form action="/login" method="POST">
+                        {% csrf_token %}
                         <div class="form-group">
-                            <label class="control-label"></label>
-                            <input class="form-control" placeholder="Email" />
+                            <label class="control-label">Username</label>
+                            <input class="form-control" placeholder="ีusername" id="username" name="username" />
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label"></label>
-                            <input class="form-control" type="password" placeholder="Password" />
+                            <label class="control-label">Password</label>
+                            <input class="form-control" type="password" placeholder="Password" id="password" name="password"  />
                         </div>
                         <div class="form-group">
                             <div class="custom-control custom-checkbox small">
